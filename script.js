@@ -10,10 +10,21 @@ _btn.addEventListener("click", function(){
     }
 
     _h=_h/100
-    
+  let bcounter=0 
     let bmi=(_w /(_h*_h))
     bmi=bmi.toFixed(2)
-    document.querySelector("#result").innerHTML=bmi
+    count=setInterval(counter,70)
+    function counter(){
+        if(bcounter < bmi){
+            document.querySelector("#result").innerHTML=bcounter
+            bcounter+=0.5
+        }
+        if(bcounter>bmi){
+            document.querySelector("#result").innerHTML=bmi
+            clearInterval(count)
+            document.querySelector(".comment").innerHTML="comment: you are <span id='comment'>"+ status+"</span>"
+        }
+    }
     let status=""
     if(bmi <18.5){
         status="underweight"
@@ -29,5 +40,5 @@ _btn.addEventListener("click", function(){
     if(bmi >=30){
         status="Obese"
     }
-    document.querySelector(".comment").innerHTML="comment: you are <span id='comment'>"+ status+"</span>"
+    
 })
